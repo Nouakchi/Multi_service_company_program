@@ -45,6 +45,9 @@ namespace Multi_service_company_program
             this.employee_form = new Bunifu.Framework.UI.BunifuFlatButton();
             this.client_form = new Bunifu.Framework.UI.BunifuFlatButton();
             this.side_panel_timer = new System.Windows.Forms.Timer(this.components);
+            this.side_panel_clock = new System.Windows.Forms.Label();
+            this.slider_clock = new System.Windows.Forms.Label();
+            this.clock = new System.Windows.Forms.Timer(this.components);
             this.bunifuCards1.SuspendLayout();
             this.panel_titre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.home_button)).BeginInit();
@@ -68,7 +71,7 @@ namespace Multi_service_company_program
             this.bunifuCards1.Name = "bunifuCards1";
             this.bunifuCards1.RightSahddow = true;
             this.bunifuCards1.ShadowDepth = 20;
-            this.bunifuCards1.Size = new System.Drawing.Size(977, 548);
+            this.bunifuCards1.Size = new System.Drawing.Size(977, 516);
             this.bunifuCards1.TabIndex = 0;
             // 
             // panel_contenaire
@@ -78,7 +81,7 @@ namespace Multi_service_company_program
             this.panel_contenaire.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_contenaire.Location = new System.Drawing.Point(160, 64);
             this.panel_contenaire.Name = "panel_contenaire";
-            this.panel_contenaire.Size = new System.Drawing.Size(813, 480);
+            this.panel_contenaire.Size = new System.Drawing.Size(813, 448);
             this.panel_contenaire.TabIndex = 3;
             // 
             // panel_titre
@@ -132,6 +135,8 @@ namespace Multi_service_company_program
             // 
             this.panel_choix.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_choix.BackgroundImage")));
             this.panel_choix.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel_choix.Controls.Add(this.slider_clock);
+            this.panel_choix.Controls.Add(this.side_panel_clock);
             this.panel_choix.Controls.Add(this.hide_button);
             this.panel_choix.Controls.Add(this.log_out_butt);
             this.panel_choix.Controls.Add(this.accissibilite_form);
@@ -147,7 +152,7 @@ namespace Multi_service_company_program
             this.panel_choix.Location = new System.Drawing.Point(0, 0);
             this.panel_choix.Name = "panel_choix";
             this.panel_choix.Quality = 10;
-            this.panel_choix.Size = new System.Drawing.Size(160, 544);
+            this.panel_choix.Size = new System.Drawing.Size(160, 512);
             this.panel_choix.TabIndex = 1;
             // 
             // hide_button
@@ -158,7 +163,7 @@ namespace Multi_service_company_program
             this.hide_button.ImageActive = null;
             this.hide_button.Location = new System.Drawing.Point(119, 0);
             this.hide_button.Name = "hide_button";
-            this.hide_button.Size = new System.Drawing.Size(41, 544);
+            this.hide_button.Size = new System.Drawing.Size(41, 512);
             this.hide_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.hide_button.TabIndex = 2;
             this.hide_button.TabStop = false;
@@ -192,7 +197,7 @@ namespace Multi_service_company_program
             this.log_out_butt.OnHovercolor = System.Drawing.Color.Gainsboro;
             this.log_out_butt.OnHoverTextColor = System.Drawing.Color.DimGray;
             this.log_out_butt.selected = false;
-            this.log_out_butt.Size = new System.Drawing.Size(128, 48);
+            this.log_out_butt.Size = new System.Drawing.Size(115, 48);
             this.log_out_butt.TabIndex = 1;
             this.log_out_butt.Text = "Quitter";
             this.log_out_butt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,7 +267,7 @@ namespace Multi_service_company_program
             this.base_donne_form.OnHovercolor = System.Drawing.Color.Gainsboro;
             this.base_donne_form.OnHoverTextColor = System.Drawing.Color.DimGray;
             this.base_donne_form.selected = false;
-            this.base_donne_form.Size = new System.Drawing.Size(128, 48);
+            this.base_donne_form.Size = new System.Drawing.Size(115, 48);
             this.base_donne_form.TabIndex = 1;
             this.base_donne_form.Text = "Base de donnes";
             this.base_donne_form.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -297,7 +302,7 @@ namespace Multi_service_company_program
             this.service_form.OnHovercolor = System.Drawing.Color.Gainsboro;
             this.service_form.OnHoverTextColor = System.Drawing.Color.DimGray;
             this.service_form.selected = false;
-            this.service_form.Size = new System.Drawing.Size(128, 48);
+            this.service_form.Size = new System.Drawing.Size(115, 48);
             this.service_form.TabIndex = 1;
             this.service_form.Text = "Service";
             this.service_form.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -332,7 +337,7 @@ namespace Multi_service_company_program
             this.employee_form.OnHovercolor = System.Drawing.Color.Gainsboro;
             this.employee_form.OnHoverTextColor = System.Drawing.Color.DimGray;
             this.employee_form.selected = false;
-            this.employee_form.Size = new System.Drawing.Size(128, 48);
+            this.employee_form.Size = new System.Drawing.Size(115, 45);
             this.employee_form.TabIndex = 1;
             this.employee_form.Text = "Employee";
             this.employee_form.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -367,7 +372,7 @@ namespace Multi_service_company_program
             this.client_form.OnHovercolor = System.Drawing.Color.Gainsboro;
             this.client_form.OnHoverTextColor = System.Drawing.Color.DimGray;
             this.client_form.selected = false;
-            this.client_form.Size = new System.Drawing.Size(128, 48);
+            this.client_form.Size = new System.Drawing.Size(115, 48);
             this.client_form.TabIndex = 1;
             this.client_form.Text = "Client";
             this.client_form.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -379,14 +384,38 @@ namespace Multi_service_company_program
             // 
             this.side_panel_timer.Tick += new System.EventHandler(this.side_panel_timer_Tick);
             // 
+            // side_panel_clock
+            // 
+            this.side_panel_clock.AutoSize = true;
+            this.side_panel_clock.Location = new System.Drawing.Point(10, 12);
+            this.side_panel_clock.Name = "side_panel_clock";
+            this.side_panel_clock.Size = new System.Drawing.Size(35, 13);
+            this.side_panel_clock.TabIndex = 3;
+            this.side_panel_clock.Text = "label1";
+            // 
+            // slider_clock
+            // 
+            this.slider_clock.AutoSize = true;
+            this.slider_clock.Location = new System.Drawing.Point(122, 12);
+            this.slider_clock.Name = "slider_clock";
+            this.slider_clock.Size = new System.Drawing.Size(35, 13);
+            this.slider_clock.TabIndex = 4;
+            this.slider_clock.Text = "label2";
+            // 
+            // clock
+            // 
+            this.clock.Tick += new System.EventHandler(this.clock_Tick);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 548);
+            this.BackColor = System.Drawing.Color.Maroon;
+            this.ClientSize = new System.Drawing.Size(977, 516);
             this.Controls.Add(this.bunifuCards1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.bunifuCards1.ResumeLayout(false);
@@ -394,6 +423,7 @@ namespace Multi_service_company_program
             this.panel_titre.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.home_button)).EndInit();
             this.panel_choix.ResumeLayout(false);
+            this.panel_choix.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hide_button)).EndInit();
             this.ResumeLayout(false);
 
@@ -415,6 +445,9 @@ namespace Multi_service_company_program
         private Bunifu.Framework.UI.BunifuCustomLabel header_label;
         private Bunifu.Framework.UI.BunifuImageButton hide_button;
         private System.Windows.Forms.Timer side_panel_timer;
+        private System.Windows.Forms.Label slider_clock;
+        private System.Windows.Forms.Label side_panel_clock;
+        private System.Windows.Forms.Timer clock;
     }
 }
 

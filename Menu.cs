@@ -20,7 +20,7 @@ namespace Multi_service_company_program
 
         private void Menu_Load(object sender, EventArgs e)
         {
-
+            clock.Start();
         }
         private void client_form_Click(object sender, EventArgs e)
         {
@@ -153,6 +153,12 @@ namespace Multi_service_company_program
                     panel_choix.Width += 40;
                 }
             }
+        }
+
+        private void clock_Tick(object sender, EventArgs e)
+        {
+            side_panel_clock.Text = DateTime.Now.ToLongDateString() + Environment.NewLine + DateTime.Now.ToShortTimeString();
+            slider_clock.Text =  DateTime.Now.Hour.ToString()+"\n"+ DateTime.Now.Minute.ToString() + "\n"+DateTime.Now.Second.ToString() + "\n";
         }
     }
 }
